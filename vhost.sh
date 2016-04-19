@@ -30,22 +30,22 @@ if [ "$action" == 'create' ]
              exit 1;
         fi
 
-        # if ! [ -d $rootDir ]; then
-        #     mkdir $rootDir
+        if ! [ -d $rootDir ]; then
+            mkdir $rootDir
 
-        #     cd $rootDir
+            cd $rootDir
 
-        #     mkdir public_html
+            mkdir public_html
 
-        #     chmod 755 $rootDir
-        #     if ! echo "<?php echo phpinfo(); ?>" > $rootDir/phpinfo.php
-		# 	then
-		# 		echo $"ERROR: Not able to write in file $rootDir/phpinfo.php. Please check permissions"
-		# 		exit;
-		# 	else
-		# 		echo $"Added content to $rootDir/phpinfo.php"
-		# 	fi
-        # fi
+            chmod 755 $rootDir
+            if ! echo "<?php echo phpinfo(); ?>" > $rootDir/phpinfo.php
+			then
+				echo $"ERROR: Not able to write in file $rootDir/phpinfo.php. Please check permissions"
+				exit;
+			else
+				echo $"Added content to $rootDir/phpinfo.php"
+			fi
+        fi
 
         echo "Creating $domain.conf and saving vhost content into it"
 
@@ -66,9 +66,9 @@ if [ "$action" == 'create' ]
 			echo -e $"\nNew Virtual Host Created\n"
 		fi
 
-		# a2ensite $domain
+		a2ensite $domain
 
-		# /etc/init.d/apache2 reload
+		/etc/init.d/apache2 reload
 
 		### show the finished message
 		echo -e $"Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootDir"
@@ -77,12 +77,12 @@ if [ "$action" == 'create' ]
         if ! [ -e $sitesAvailabledomain ]; then
 			echo -e $"This domain does not exist.\nPlease try another one"
 			exit;
-		# else
-            # a2dissite $domain
+		else
+            a2dissite $domain
 
-            # /etc/init.d/apache2 reload
+            /etc/init.d/apache2 reload
 
-            # rm $sitesAvailabledomain
+            rm $sitesAvailabledomain
         fi
 
 		echo -e $"Complete!\nYou just removed Virtual Host $domain"
