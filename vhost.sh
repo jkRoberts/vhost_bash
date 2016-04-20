@@ -6,6 +6,7 @@ sitesEnable='/etc/apache2/sites-enabled/'
 sitesAvailable='/etc/apache2/sites-available/'
 userDir='/var/www/'
 sitesAvailabledomain=$sitesAvailable$domain.conf
+email='webmaster@localhost'
 
 echo -e "\n\n"
 
@@ -50,7 +51,7 @@ if [ "$action" == 'create' ]
         echo "Creating $domain.conf and saving vhost content into it"
 
         if ! echo "<VirtualHost *:80>
-            ServerAdmin jacob.roberts.nz@gmail.com
+            ServerAdmin $email
             DocumentRoot $rootDir/public_html
             ServerName $domain
             ServerAlias www.$domain
