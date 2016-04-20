@@ -59,7 +59,7 @@ if [ "$action" == 'create' ]
             LogLevel error
             ErrorLog ${APACHE_LOG_DIR}/$domain-error.log
             CustomLog ${APACHE_LOG_DIR}/$domain-access.log combined
-    </VirtualHost>" > $domain.txt
+    </VirtualHost>" > $sitesAvailable$domain.conf
         then
 			echo -e $"There is an ERROR creating $domain file"
 			exit;
