@@ -18,9 +18,9 @@ If you go through with this step, you will be able to use the script globally
 
 ### Usage
 
-1. Running the script from where it lives `$ ./vhost.sh create|delete domain_name web_path`
+1. Running the script from where it lives `$ ./vhost.sh create|delete|help domain_name web_path`
 
-2. Running this script globally. `vhost create|delete domain_name web_path`
+2. Running this script globally. `vhost create|delete|help domain_name web_path`
 
 ### Examples
 
@@ -53,6 +53,12 @@ If the site already exists, then it will return a message to say this is the cas
 This will disable the current vhost file in sites available, restart apache and then remove the conf file.
 
 If it doesn't find a site, then it will return a nice message to say it has not found anything.
+
+#### Help
+
+`sudo vhost delete testwebsite.com`
+
+This will disable the current vhost file in sites available, restart apache and then remove the conf file.
 
 ### Contribution
 
