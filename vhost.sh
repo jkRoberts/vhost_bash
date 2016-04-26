@@ -25,7 +25,7 @@ done
 
 rootDir=$userDir$folder
 
-if [ "$action" == 'create' ]
+if [ "$action" == 'create' ];
     then
         if [ -e $sitesAvailabledomain ]; then
              echo -e "$domain already exists"
@@ -33,13 +33,13 @@ if [ "$action" == 'create' ]
         fi
 
         if ! [ -d $rootDir ]; then
-            mkdir $rootDir
+            # mkdir $rootDir
 
-            cd $rootDir
+            # cd $rootDir
 
-            mkdir public_html
+            # mkdir public_html
 
-            chmod 755 $rootDir
+            # chmod 755 $rootDir
             if ! echo "<?php echo phpinfo(); ?>" > $rootDir/phpinfo.php
 			then
 				echo $"ERROR: Not able to write in file $rootDir/phpinfo.php. Please check permissions"
@@ -76,20 +76,20 @@ if [ "$action" == 'create' ]
 		### show the finished message
 		echo -e $"Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootDir"
 		exit;
-    else if [ "$action" == "delete" ]
+    elif [ "$action" == "delete" ]
         then
-        if ! [ -e $sitesAvailabledomain ]; then
-			echo -e $"This domain does not exist.\nPlease try another one"
-			exit;
-		else
-            a2dissite $domain
+            if ! [ -e $sitesAvailabledomain ]; then
+    			echo -e $"This domain does not exist.\nPlease try another one"
+    			exit;
+    		else
+                a2dissite $domain
 
-            /etc/init.d/apache2 reload
+                /etc/init.d/apache2 reload
 
-            rm $rootDir
+                rm $rootDir
 
-            rm $sitesAvailabledomain
-        fi
+                rm $sitesAvailabledomain
+            fi
 
 		echo -e $"Complete!\nYou just removed Virtual Host $domain"
 		exit 0;
@@ -114,9 +114,10 @@ if [ "$action" == 'create' ]
         echo -e "= This will take the arguments of\n"
         echo -e "= *youdomainname.com*\n"
         echo -e "= and this will delete the vhost.conf \n"
-        #echo -e "= and then remove the root dir \n"
-        #echo -e "= and then restart apache \n"
+        echo -e "= and then remove the root dir \n"
+        echo -e "= and then restart apache \n"
         echo -e "=\n"
         echo -e "=\n"
         echo -e "====================================\n"
+        exit 0;
 fi
