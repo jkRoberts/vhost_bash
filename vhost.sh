@@ -77,6 +77,7 @@ if [ "$action" == 'create' ]
 		echo -e $"Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootDir"
 		exit;
     else if [ "$action" == "delete" ]
+        then
         if ! [ -e $sitesAvailabledomain ]; then
 			echo -e $"This domain does not exist.\nPlease try another one"
 			exit;
