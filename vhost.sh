@@ -17,7 +17,7 @@ if [ "$action" != "create" ] && [ "$action" != "delete" ] && [ "$action" != "hel
         exit 1;
 fi
 
-while [ "$domain" == "" ] && ["$action" != "help"]
+while [ "$domain" == "" ] && [ "$action" != "help" ]
 do
     echo "Please input a domain"
     read domain
@@ -105,7 +105,7 @@ if [ "$action" == 'create' ]
         echo -e "= and the Vhost.conf file, enable it \n"
         echo -e "= and then restart apache, so your \n"
         echo -e "= dir is ready to go\n"
-        echo -e "= "
+        echo -e "= \n"
         echo -e "= ----------------------------------\n"
         echo -e "=\n"
         echo -e "= 'delete'\n"
