@@ -6,11 +6,12 @@ sitesEnable='/etc/apache2/sites-enabled/'
 sitesAvailable='/etc/apache2/sites-available/'
 userDir='/var/www/'
 sitesAvailabledomain=$sitesAvailable$domain.conf
+publichtml=$userDir$folder"/public_html"
 email='webmaster@localhost'
 
 echo -e "\n\n"
 
-if [ "$action" != "create" ] && [ "$action" != "delete" ]
+if [ "$action" != "create" ] && [ "$action" != "delete" ] && [ "$action" != "help" ]
     then
         echo "You need to add an action. You can use 'create' or 'delete'"
         exit 1;
@@ -48,6 +49,7 @@ if [ "$action" == 'create' ]
 			fi
         fi
 
+
         echo "Creating $domain.conf and saving vhost content into it"
 
         if ! echo "<VirtualHost *:80>
@@ -74,7 +76,7 @@ if [ "$action" == 'create' ]
 		### show the finished message
 		echo -e $"Complete! \nYou now have a new Virtual Host \nYour new host is: http://$domain \nAnd its located at $rootDir"
 		exit;
-    else
+    else if [ "$action" == "delete" ]
         if ! [ -e $sitesAvailabledomain ]; then
 			echo -e $"This domain does not exist.\nPlease try another one"
 			exit;
@@ -83,9 +85,37 @@ if [ "$action" == 'create' ]
 
             /etc/init.d/apache2 reload
 
+            rm $rootDir
+
             rm $sitesAvailabledomain
         fi
 
 		echo -e $"Complete!\nYou just removed Virtual Host $domain"
 		exit 0;
+    else
+        echo -e "The actions that you can use are:\n"
+        echo -e "====================================\n"
+        echo -e "=\n"
+        echo -e "=\n"
+        echo -e "= 'create'\n"
+        echo -e "=\n"
+        echo -e "= This will take the arguments of\n"
+        echo -e "= *youdomainname.com* *yourdirname*\n"
+        echo -e "= and this will create the root dir \n"
+        echo -e "= and the Vhost.conf file, enable it \n"
+        echo -e "= and then restart apache, so your \n"
+        echo -e "= dir is ready to go\n"
+        echo -e "= "
+        echo -e "= ----------------------------------\n"
+        echo -e "=\n"
+        echo -e "= 'delete'\n"
+        echo -e "=\n"
+        echo -e "= This will take the arguments of\n"
+        echo -e "= *youdomainname.com*\n"
+        echo -e "= and this will delete the vhost.conf \n"
+        #echo -e "= and then remove the root dir \n"
+        #echo -e "= and then restart apache \n"
+        echo -e "=\n"
+        echo -e "=\n"
+        echo -e "====================================\n"
 fi
