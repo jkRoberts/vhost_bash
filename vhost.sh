@@ -17,7 +17,7 @@ if [ "$action" != "create" ] && [ "$action" != "delete" ] && [ "$action" != "hel
         exit 1;
 fi
 
-while [ "$domain" == "" ]
+while [ "$domain" == "" ] && ["$action" != "help"]
 do
     echo "Please input a domain"
     read domain
