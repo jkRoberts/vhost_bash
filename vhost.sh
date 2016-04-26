@@ -33,13 +33,13 @@ if [ "$action" == 'create' ];
         fi
 
         if ! [ -d $rootDir ]; then
-            # mkdir $rootDir
+            mkdir $rootDir
 
-            # cd $rootDir
+            cd $rootDir
 
-            # mkdir public_html
+            mkdir public_html
 
-            # chmod 755 $rootDir
+            chmod 755 $rootDir
             if ! echo "<?php echo phpinfo(); ?>" > $rootDir/phpinfo.php
 			then
 				echo $"ERROR: Not able to write in file $rootDir/phpinfo.php. Please check permissions"
@@ -94,30 +94,30 @@ if [ "$action" == 'create' ];
 		echo -e $"Complete!\nYou just removed Virtual Host $domain"
 		exit 0;
     else
-        echo -e "The actions that you can use are:\n"
-        echo -e "====================================\n"
-        echo -e "=\n"
-        echo -e "=\n"
-        echo -e "= 'create'\n"
-        echo -e "=\n"
-        echo -e "= This will take the arguments of\n"
-        echo -e "= *youdomainname.com* *yourdirname*\n"
-        echo -e "= and this will create the root dir \n"
-        echo -e "= and the Vhost.conf file, enable it \n"
-        echo -e "= and then restart apache, so your \n"
-        echo -e "= dir is ready to go\n"
-        echo -e "= \n"
-        echo -e "= ----------------------------------\n"
-        echo -e "=\n"
-        echo -e "= 'delete'\n"
-        echo -e "=\n"
-        echo -e "= This will take the arguments of\n"
-        echo -e "= *youdomainname.com*\n"
-        echo -e "= and this will delete the vhost.conf \n"
-        echo -e "= and then remove the root dir \n"
-        echo -e "= and then restart apache \n"
-        echo -e "=\n"
-        echo -e "=\n"
-        echo -e "====================================\n"
+        echo -e "The actions that you can use are:"
+        echo -e "======================================="
+        echo -e "=                                     ="
+        echo -e "=                                     ="
+        echo -e "= 'create'                            ="
+        echo -e "=                                     ="
+        echo -e "= This will take the arguments of     ="
+        echo -e "= *youdomainname.com* *yourdirname*   ="
+        echo -e "= and this will create the root dir   ="
+        echo -e "= and the Vhost.conf file, enable it  ="
+        echo -e "= and then restart apache, so your    ="
+        echo -e "= dir is ready to go                  ="
+        echo -e "=                                     ="
+        echo -e "= -------------------------------------"
+        echo -e "=                                     ="
+        echo -e "= 'delete'                            ="
+        echo -e "=                                     ="
+        echo -e "= This will take the arguments of     ="
+        echo -e "= *youdomainname.com*                 ="
+        echo -e "= and this will delete the vhost.conf ="
+        echo -e "= and then remove the root dir        ="
+        echo -e "= and then restart apache             ="
+        echo -e "=                                     ="
+        echo -e "=                                     ="
+        echo -e "======================================="
         exit 0;
 fi
